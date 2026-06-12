@@ -348,6 +348,18 @@ if (typeof module !== 'undefined' && module.exports) {{
     
     print(f"已保存JS文件: {ARTICLES_JS_FILE}")
     
+    # 自动提交并推送到GitHub
+    print("\n正在推送到GitHub...")
+    try:
+        import subprocess
+        os.chdir(BASE_DIR)
+        subprocess.run(["git", "add", "."], check=True, capture_output=True)
+        subprocess.run(["git", "commit", "-m", f"自动更新新闻 - {TODAY}"], check=True, capture_output=True)
+        subprocess.run(["git", "push"], check=True, capture_output=True)
+        print("已推送到GitHub！")
+    except Exception as e:
+        print(f"推送失败: {e}")
+    
     print("\n" + "=" * 50)
     print(f"更新完成！共 {len(articles)} 篇文章")
     print("=" * 50)
