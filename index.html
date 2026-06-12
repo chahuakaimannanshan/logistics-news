@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="国内物流行业最新新闻资讯，涵盖快递、仓储、运输、供应链等领域">
+    <meta name="keywords" content="物流新闻,快递,仓储,运输,供应链,国内物流">
+    <title>国内物流新闻 - 物流行业资讯门户</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>国内物流新闻</h1>
+                <p class="tagline">物流行业资讯门户</p>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html" class="active">首页</a></li>
+                    <li><a href="category.html?cat=快递">快递</a></li>
+                    <li><a href="category.html?cat=仓储">仓储</a></li>
+                    <li><a href="category.html?cat=运输">运输</a></li>
+                    <li><a href="category.html?cat=供应链">供应链</a></li>
+                    <li><a href="category.html?cat=政策">政策</a></li>
+                </ul>
+            </nav>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="搜索新闻...">
+                <button id="searchBtn">搜索</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container home-container">
+            <div class="home-main">
+                <section class="breaking-news">
+                    <h2>最新动态</h2>
+                    <div id="breakingNews" class="breaking-content">
+                        <!-- 动态加载 -->
+                    </div>
+                </section>
+
+                <section class="featured-news">
+                    <h2>头条新闻</h2>
+                    <div id="featuredNews" class="featured-grid">
+                        <!-- 动态加载 -->
+                    </div>
+                </section>
+
+                <section class="latest-news">
+                    <h2>最新新闻</h2>
+                    <div id="latestNews" class="news-list">
+                        <!-- 动态加载 -->
+                    </div>
+                    <div class="pagination" id="pagination">
+                        <!-- 分页控件 -->
+                    </div>
+                </section>
+            </div>
+
+            <aside class="sidebar">
+                <div class="sidebar-section">
+                    <h3>热门分类</h3>
+                    <ul class="category-list">
+                        <li><a href="category.html?cat=快递">快递</a></li>
+                        <li><a href="category.html?cat=仓储">仓储</a></li>
+                        <li><a href="category.html?cat=运输">运输</a></li>
+                        <li><a href="category.html?cat=供应链">供应链</a></li>
+                        <li><a href="category.html?cat=政策">政策</a></li>
+                    </ul>
+                </div>
+                <div class="sidebar-section">
+                    <h3>热门标签</h3>
+                    <div class="tag-cloud">
+                        <a href="category.html?tag=电商物流" class="tag">电商物流</a>
+                        <a href="category.html?tag=冷链物流" class="tag">冷链物流</a>
+                        <a href="category.html?tag=绿色物流" class="tag">绿色物流</a>
+                        <a href="category.html?tag=智能仓储" class="tag">智能仓储</a>
+                        <a href="category.html?tag=跨境物流" class="tag">跨境物流</a>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>关于我们</h4>
+                    <p>国内物流新闻门户，提供最新的物流行业资讯和深度分析。</p>
+                </div>
+                <div class="footer-section">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="index.html">首页</a></li>
+                        <li><a href="category.html?cat=快递">快递新闻</a></li>
+                        <li><a href="category.html?cat=仓储">仓储新闻</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>联系方式</h4>
+                    <p>邮箱：contact@logistics-news.com</p>
+                    <p>电话：400-123-4567</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 国内物流新闻. 版权所有.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/articles.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

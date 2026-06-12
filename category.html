@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="分类新闻页面">
+    <title>分类新闻 - 国内物流新闻</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1><a href="index.html">国内物流新闻</a></h1>
+                <p class="tagline">物流行业资讯门户</p>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="category.html?cat=快递">快递</a></li>
+                    <li><a href="category.html?cat=仓储">仓储</a></li>
+                    <li><a href="category.html?cat=运输">运输</a></li>
+                    <li><a href="category.html?cat=供应链">供应链</a></li>
+                    <li><a href="category.html?cat=政策">政策</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container category-container">
+            <div class="category-main">
+                <section class="category-header">
+                    <h2 id="categoryTitle">分类新闻</h2>
+                    <div class="category-meta" id="categoryMeta"></div>
+                </section>
+
+                <section class="category-news">
+                    <div id="categoryNews" class="news-list">
+                        <!-- 动态加载分类新闻 -->
+                    </div>
+                    <div class="pagination" id="pagination">
+                        <!-- 分页控件 -->
+                    </div>
+                </section>
+            </div>
+
+            <aside class="sidebar">
+                <div class="sidebar-section">
+                    <h3>所有分类</h3>
+                    <ul class="category-list">
+                        <li><a href="category.html?cat=快递">快递</a></li>
+                        <li><a href="category.html?cat=仓储">仓储</a></li>
+                        <li><a href="category.html?cat=运输">运输</a></li>
+                        <li><a href="category.html?cat=供应链">供应链</a></li>
+                        <li><a href="category.html?cat=政策">政策</a></li>
+                    </ul>
+                </div>
+                <div class="sidebar-section">
+                    <h3>热门标签</h3>
+                    <div class="tag-cloud">
+                        <a href="category.html?tag=电商物流" class="tag">电商物流</a>
+                        <a href="category.html?tag=冷链物流" class="tag">冷链物流</a>
+                        <a href="category.html?tag=绿色物流" class="tag">绿色物流</a>
+                        <a href="category.html?tag=智能仓储" class="tag">智能仓储</a>
+                        <a href="category.html?tag=跨境物流" class="tag">跨境物流</a>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>关于我们</h4>
+                    <p>国内物流新闻门户，提供最新的物流行业资讯和深度分析。</p>
+                </div>
+                <div class="footer-section">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="index.html">首页</a></li>
+                        <li><a href="category.html?cat=快递">快递新闻</a></li>
+                        <li><a href="category.html?cat=仓储">仓储新闻</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>联系方式</h4>
+                    <p>邮箱：contact@logistics-news.com</p>
+                    <p>电话：400-123-4567</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 国内物流新闻. 版权所有.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/articles.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // 获取URL参数
+        const urlParams = new URLSearchParams(window.location.search);
+        const category = urlParams.get('cat');
+        const tag = urlParams.get('tag');
+        
+        if (category) {
+            document.getElementById('categoryTitle').textContent = category + '新闻';
+            loadCategoryNews(category);
+        } else if (tag) {
+            document.getElementById('categoryTitle').textContent = tag + '相关新闻';
+            loadTagNews(tag);
+        } else {
+            document.getElementById('categoryTitle').textContent = '所有新闻';
+            loadAllNews();
+        }
+    </script>
+</body>
+</html>

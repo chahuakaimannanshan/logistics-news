@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="文章详情页面">
+    <title>文章详情 - 国内物流新闻</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1><a href="index.html">国内物流新闻</a></h1>
+                <p class="tagline">物流行业资讯门户</p>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="category.html?cat=快递">快递</a></li>
+                    <li><a href="category.html?cat=仓储">仓储</a></li>
+                    <li><a href="category.html?cat=运输">运输</a></li>
+                    <li><a href="category.html?cat=供应链">供应链</a></li>
+                    <li><a href="category.html?cat=政策">政策</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container article-container">
+            <div class="article-main">
+                <a href="javascript:history.back()" class="back-to-list">返回列表</a>
+                <article class="article-detail" id="articleDetail">
+                    <!-- 动态加载文章内容 -->
+                    <div class="loading">加载中...</div>
+                </article>
+            </div>
+
+            <aside class="sidebar">
+                <div class="sidebar-section">
+                    <h3>相关文章</h3>
+                    <div id="relatedArticles" class="related-list">
+                        <!-- 动态加载相关文章 -->
+                    </div>
+                </div>
+                <div class="sidebar-section">
+                    <h3>热门标签</h3>
+                    <div class="tag-cloud">
+                        <a href="category.html?tag=电商物流" class="tag">电商物流</a>
+                        <a href="category.html?tag=冷链物流" class="tag">冷链物流</a>
+                        <a href="category.html?tag=绿色物流" class="tag">绿色物流</a>
+                        <a href="category.html?tag=智能仓储" class="tag">智能仓储</a>
+                        <a href="category.html?tag=跨境物流" class="tag">跨境物流</a>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>关于我们</h4>
+                    <p>国内物流新闻门户，提供最新的物流行业资讯和深度分析。</p>
+                </div>
+                <div class="footer-section">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="index.html">首页</a></li>
+                        <li><a href="category.html?cat=快递">快递新闻</a></li>
+                        <li><a href="category.html?cat=仓储">仓储新闻</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>联系方式</h4>
+                    <p>邮箱：contact@logistics-news.com</p>
+                    <p>电话：400-123-4567</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 国内物流新闻. 版权所有.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/articles.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // 获取URL参数中的文章ID
+        const urlParams = new URLSearchParams(window.location.search);
+        const articleId = urlParams.get('id');
+        
+        if (articleId) {
+            loadArticleDetail(articleId);
+            loadRelatedArticles(articleId);
+        } else {
+            document.getElementById('articleDetail').innerHTML = '<div class="error">未找到文章</div>';
+        }
+    </script>
+</body>
+</html>
