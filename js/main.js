@@ -81,23 +81,52 @@ function loadLatestNews(page) {
     loadPagination(page, Math.ceil(articles.length / perPage));
 }
 
-// 加载分页控件
+// 加载分页控件（最多显示6页）
 function loadPagination(currentPage, totalPages) {
     const container = document.getElementById('pagination');
     if (!container) return;
     
+    const maxVisible = 6;
     let html = '';
     
+    // 上一页
     if (currentPage > 1) {
-        html += `<button onclick="loadLatestNews(${currentPage - 1})">上一页</button>`;
+        html += `<button class="pagination-btn" onclick="loadLatestNews(${currentPage - 1})">‹ 上一页</button>`;
     }
     
-    for (let i = 1; i <= totalPages; i++) {
-        html += `<button class="${i === currentPage ? 'active' : ''}" onclick="loadLatestNews(${i})">${i}</button>`;
+    // 计算起始和结束页码
+    let startPage = Math.max(1, currentPage - Math.floor(maxVisible / 2));
+    let endPage = Math.min(totalPages, startPage + maxVisible - 1);
+    
+    // 调整起始页码
+    if (endPage - startPage + 1 < maxVisible) {
+        startPage = Math.max(1, endPage - maxVisible + 1);
     }
     
+    // 第一页
+    if (startPage > 1) {
+        html += `<button class="pagination-btn" onclick="loadLatestNews(1)">1</button>`;
+        if (startPage > 2) {
+            html += `<span class="pagination-ellipsis">...</span>`;
+        }
+    }
+    
+    // 页码按钮
+    for (let i = startPage; i <= endPage; i++) {
+        html += `<button class="pagination-btn ${i === currentPage ? 'active' : ''}" onclick="loadLatestNews(${i})">${i}</button>`;
+    }
+    
+    // 最后一页
+    if (endPage < totalPages) {
+        if (endPage < totalPages - 1) {
+            html += `<span class="pagination-ellipsis">...</span>`;
+        }
+        html += `<button class="pagination-btn" onclick="loadLatestNews(${totalPages})">${totalPages}</button>`;
+    }
+    
+    // 下一页
     if (currentPage < totalPages) {
-        html += `<button onclick="loadLatestNews(${currentPage + 1})">下一页</button>`;
+        html += `<button class="pagination-btn" onclick="loadLatestNews(${currentPage + 1})">下一页 ›</button>`;
     }
     
     container.innerHTML = html;

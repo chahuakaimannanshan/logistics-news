@@ -319,30 +319,46 @@ section h2 {
 .pagination {
     display: flex;
     justify-content: center;
-    gap: 8px;
+    align-items: center;
+    gap: 6px;
     margin-top: 32px;
+    padding: 16px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
 }
 
-.pagination button {
-    padding: 10px 20px;
-    border: 1px solid #e0e0e0;
+.pagination-btn {
+    padding: 10px 16px;
+    border: 1px solid #e8e8e8;
     background: #fff;
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.2s;
     font-size: 14px;
-    color: #666;
+    color: #555;
+    font-weight: 500;
+    min-width: 42px;
+    text-align: center;
 }
 
-.pagination button:hover {
+.pagination-btn:hover:not(.active) {
     border-color: #667eea;
     color: #667eea;
+    background: #f8f9ff;
 }
 
-.pagination button.active {
+.pagination-btn.active {
     background: linear-gradient(135deg, #667eea, #764ba2);
     color: white;
     border-color: transparent;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.pagination-ellipsis {
+    padding: 0 4px;
+    color: #999;
+    font-size: 14px;
 }
 
 /* 侧边栏 */
