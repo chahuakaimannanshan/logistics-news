@@ -53,15 +53,20 @@ function loadFeaturedNews() {
     `).join('');
 }
 
-// 加载最新新闻列表
+// 加载最新新闻列表（按日期排序）
 function loadLatestNews(page) {
     const container = document.getElementById('latestNews');
     if (!container || !articles.length) return;
     
+    // 按日期从新到旧排序
+    const sortedArticles = [...articles].sort((a, b) => {
+        return new Date(b.date) - new Date(a.date);
+    });
+    
     const perPage = 5;
     const start = (page - 1) * perPage;
     const end = start + perPage;
-    const pageArticles = articles.slice(start, end);
+    const pageArticles = sortedArticles.slice(start, end);
     
     container.innerHTML = pageArticles.map((article, index) => `
         <div class="news-item">
@@ -78,7 +83,7 @@ function loadLatestNews(page) {
     `).join('');
     
     // 加载分页
-    loadPagination(page, Math.ceil(articles.length / perPage));
+    loadPagination(page, Math.ceil(sortedArticles.length / perPage));
 }
 
 // 加载分页控件（最多显示6页）
