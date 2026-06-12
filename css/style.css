@@ -690,7 +690,7 @@ section h2 {
     }
     
     .sidebar {
-        order: -1;
+        order: 2;
     }
     
     .featured-grid {
@@ -743,5 +743,18 @@ section h2 {
     .article-meta {
         flex-direction: column;
         gap: 10px;
+    }
+    
+    .article-container {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .article-main {
+        order: 1;
+    }
+    
+    .article-container .sidebar {
+        order: 2;
     }
 }
