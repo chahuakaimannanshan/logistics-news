@@ -380,78 +380,6 @@ def fetch_baidu_logistics():
     
     return articles
 
-def fetch_chinawuliu_logistics():
-    """从中国物流与采购网抓取物流新闻"""
-    articles = []
-    urls = [
-        'http://www.chinawuliu.com.cn/zixun/',
-        'http://www.chinawuliu.com.cn/',
-    ]
-    
-    for url in urls:
-        try:
-            time.sleep(random.uniform(1, 2))
-            resp = requests.get(url, headers=HEADERS, timeout=10)
-            resp.encoding = 'utf-8'
-            soup = BeautifulSoup(resp.text, 'lxml')
-            
-            # 查找新闻链接
-            news_links = soup.find_all('a', href=True)
-            for link in news_links[:50]:
-                try:
-                    title = link.get_text().strip()
-                    news_url = link.get('href', '')
-                    
-                    # 过滤无效链接和标题
-                    if not title or len(title) < 15:
-                        continue
-                    if not news_url or not news_url.startswith('http'):
-                        if news_url.startswith('/'):
-                            news_url = 'http://www.chinawuliu.com.cn' + news_url
-                        else:
-                            continue
-                    
-                    # 过滤无用标题
-                    if any(keyword in title for keyword in USELESS_TITLE_KEYWORDS):
-                        continue
-                    
-                    # 过滤非物流新闻
-                    if not any(keyword in title for keyword in LOGISTICS_KEYWORDS):
-                        continue
-                    
-                    # 过滤标题太短的
-                    if len(title) < 20:
-                        continue
-                    
-                    # 过滤重复标题
-                    if title in [a['title'] for a in articles]:
-                        continue
-                    
-                    # 过滤导航链接（通常是短标题）
-                    if len(title) < 25 and not any(k in title for k in ['发布', '公布', '通知', '规定', '办法', '意见']):
-                        continue
-                    
-                    articles.append({
-                        'title': title,
-                        'summary': truncate_content(title, 100),
-                        'content': title,
-                        'source': 'chinawuliu',
-                        'url': news_url
-                    })
-                    
-                    if len(articles) >= 8:
-                        break
-                except Exception as e:
-                    continue
-            
-            if len(articles) >= 8:
-                break
-        except Exception as e:
-            print(f"中国物流与采购网抓取失败: {e}")
-            continue
-    
-    return articles
-
 # ==================== 备用方案：生成模拟新闻 ====================
 
 def generate_sample_news():
@@ -601,7 +529,6 @@ def main():
     
     # 尝试从各个新闻源抓取
     fetch_functions = [
-        ("中国物流与采购网", fetch_chinawuliu_logistics),
         ("新浪", fetch_sina_logistics),
         ("搜狐", fetch_sohu_logistics),
         ("网易", fetch_netease_logistics),
