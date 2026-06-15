@@ -3,121 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="2020年以来中国物流行业重要政策法规汇编">
     <title>物流政策法规汇编 - 六点半物流资讯</title>
     <link rel="stylesheet" href="css/style.css">
     <style>
-        .policy-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .policy-header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding: 30px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 12px;
-            color: white;
-        }
-        .policy-header h1 {
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-        .policy-header p {
-            opacity: 0.9;
-            font-size: 1.1rem;
-        }
-        .policy-filters {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-        }
-        .filter-btn {
-            padding: 8px 16px;
-            border: 1px solid #667eea;
-            background: white;
-            color: #667eea;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        .filter-btn:hover, .filter-btn.active {
-            background: #667eea;
-            color: white;
-        }
-        .policy-list {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        .policy-card {
-            background: white;
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-            cursor: pointer;
-            transition: all 0.3s;
-            border-left: 4px solid #667eea;
-        }
-        .policy-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 24px rgba(102,126,234,0.15);
-        }
-        .policy-card h3 {
-            font-size: 1.2rem;
-            color: #333;
-            margin-bottom: 12px;
-        }
-        .policy-meta {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 12px;
-            font-size: 0.9rem;
-            color: #666;
-        }
-        .policy-summary {
-            color: #555;
-            line-height: 1.6;
-        }
-        .policy-tags {
-            margin-top: 12px;
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-        .policy-tag {
-            display: inline-block;
-            padding: 4px 12px;
-            background: #f0f0ff;
-            color: #667eea;
-            border-radius: 15px;
-            font-size: 0.8rem;
-        }
-        .back-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 20px;
-            background: #667eea;
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            transition: background 0.3s;
-        }
-        .back-btn:hover {
-            background: #5a6fd6;
-        }
+        .policy-container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        .policy-header { text-align: center; margin-bottom: 40px; padding: 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px; color: white; }
+        .policy-header h1 { font-size: 2rem; margin-bottom: 10px; }
+        .policy-header p { opacity: 0.9; font-size: 1.1rem; }
+        .policy-filters { display: flex; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
+        .filter-btn { padding: 8px 16px; border: 1px solid #667eea; background: white; color: #667eea; border-radius: 20px; cursor: pointer; transition: all 0.3s; }
+        .filter-btn:hover, .filter-btn.active { background: #667eea; color: white; }
+        .policy-list { display: flex; flex-direction: column; gap: 20px; }
+        .policy-card { background: white; border-radius: 12px; padding: 25px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); cursor: pointer; transition: all 0.3s; border-left: 4px solid #667eea; }
+        .policy-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(102,126,234,0.15); }
+        .policy-card h3 { font-size: 1.2rem; color: #333; margin-bottom: 12px; }
+        .policy-meta { display: flex; gap: 20px; margin-bottom: 12px; font-size: 0.9rem; color: #666; }
+        .policy-summary { color: #555; line-height: 1.6; }
+        .policy-tags { margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
+        .policy-tag { display: inline-block; padding: 4px 12px; background: #f0f0ff; color: #667eea; border-radius: 15px; font-size: 0.8rem; }
+        .back-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: #667eea; color: white; text-decoration: none; border-radius: 8px; margin-bottom: 20px; transition: background 0.3s; }
+        .back-btn:hover { background: #5a6fd6; }
     </style>
 </head>
 <body>
     <header class="header">
         <div class="container">
-            <div class="logo">
-                <h1><a href="index.html">六点半物流资讯</a></h1>
-            </div>
+            <div class="logo"><h1><a href="index.html">六点半物流资讯</a></h1></div>
             <nav class="nav">
                 <ul>
                     <li><a href="index.html">首页</a></li>
@@ -152,85 +63,64 @@
                 <button class="filter-btn" onclick="filterPolicies('基础设施投资')">基础设施投资</button>
             </div>
 
-            <div class="policy-list" id="policyList">
-                <!-- 动态加载政策列表 -->
-            </div>
+            <div class="policy-list" id="policyList"></div>
         </div>
     </main>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>关于我们</h4>
-                    <p>国内物流新闻门户，提供最新的物流行业资讯和深度分析。</p>
-                </div>
-                <div class="footer-section">
-                    <h4>快速链接</h4>
-                    <ul>
-                        <li><a href="index.html">首页</a></li>
-                        <li><a href="category.html?cat=快递">快递新闻</a></li>
-                        <li><a href="policy.html">政策法规汇编</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>联系方式</h4>
-                    <p>邮箱：contact@logistics-news.com</p>
-                    <p>电话：400-123-4567</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 六点半物流资讯. 版权所有.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="js/policies.js"></script>
     <script>
-        let allPolicies = [];
-        let currentFilter = 'all';
+    var allPolicies = [
+        {"id":"policy-001","title":"《"十四五"现代物流发展规划》","agency":"国家发展改革委","date":"2022-12-15","category":"综合物流规划","summary":"构建"通道+枢纽+网络"现代物流运行体系，建设212个国家物流枢纽","tags":["物流规划","国家物流枢纽","十四五"]},
+        {"id":"policy-002","title":"《有效降低全社会物流成本行动方案》","agency":"中共中央办公厅、国务院办公厅","date":"2024-11-01","category":"综合物流规划","summary":"深化物流领域放管服改革，降低物流制度性交易成本","tags":["降本增效","物流改革"]},
+        {"id":"policy-003","title":"《"十四五"冷链物流发展规划》","agency":"国家发展改革委","date":"2021-12-01","category":"冷链物流","summary":"布局建设100个左右国家骨干冷链物流基地","tags":["冷链物流","冷链基地","十四五"]},
+        {"id":"policy-004","title":"《物流企业冷链服务能力要求与评估指标》（GB/T 31086-2025）","agency":"国家市场监管总局","date":"2025-06-01","category":"冷链物流","summary":"修订冷链服务能力评估指标，新增营业时间、冷链物流收入等指标","tags":["冷链标准","服务评估","国标"]},
+        {"id":"policy-005","title":"ISO/TS 31514:2025《冷链物流中食品可追溯性的要求和建议》","agency":"国际标准化组织（ISO）","date":"2025-11-04","category":"冷链物流","summary":"建立冷链物流中食品可追溯性系统的统一框架","tags":["食品追溯","国际标准","冷链物流"]},
+        {"id":"policy-006","title":"《关于开展物流数据开放互联试点工作的通知》","agency":"国家发展改革委、国家数据局等8部门","date":"2025-02-07","category":"数字化转型","summary":"选取16个城市开展物流数据开放互联试点","tags":["数据互联","数字化","试点"]},
+        {"id":"policy-007","title":"《关于推动物流数据开放互联有效降低全社会物流成本的实施方案》","agency":"国家发展改革委、国家数据局等10部门","date":"2025-11-03","category":"数字化转型","summary":"建立国家物流公共数据共享开放清单","tags":["数据共享","降本增效","数字化"]},
+        {"id":"policy-008","title":"《网络货运承运平台经营管理办法》","agency":"交通运输部、国家税务总局","date":"2026-02-01","category":"数字化转型","summary":"明确平台以承运人身份整合资源并承担责任","tags":["网络货运","平台监管","税务合规"]},
+        {"id":"policy-009","title":"《国务院关于修改〈快递暂行条例〉的决定》","agency":"国务院","date":"2025-06-01","category":"绿色物流","summary":"新增"快递包装"章节，推进快递包装绿色化、减量化、可循环","tags":["快递包装","绿色环保","条例修改"]},
+        {"id":"policy-010","title":"《现代物流标准化重点工作计划（2025—2027年）》","agency":"市场监管总局、国家发展改革委等6部门","date":"2025-12-30","category":"绿色物流","summary":"部署5大板块、101项国家标准研制任务","tags":["物流标准化","国家标准","三年计划"]},
+        {"id":"policy-011","title":"《加快培育交通物流领军企业提升产业链供应链服务保障能力行动方案》","agency":"交通运输部等8部门","date":"2026-01-28","category":"供应链安全","summary":"到2030年，打造100家左右综合物流集成商","tags":["领军企业","供应链","多式联运"]},
+        {"id":"policy-012","title":"2026年中央一号文件农村物流专项部署","agency":"中共中央、国务院","date":"2026-02-03","category":"农村物流","summary":"支持农村寄递物流设施共建共享，推动农村客货邮融合发展","tags":["农村物流","快递进村","乡村振兴"]},
+        {"id":"policy-013","title":"2026年仓储物流领域政府专项债申报指南","agency":"财政部、国家发展改革委","date":"2026-02-04","category":"基础设施投资","summary":"仓储物流为重点支持行业，专项债资金最高可达总投资80%","tags":["专项债","基础设施","投资"]},
+        {"id":"policy-014","title":"《山东省药品现代物流实施意见》","agency":"山东省药品监督管理局","date":"2026-02-01","category":"药品物流","summary":"新开办药品批发企业需符合现代物流要求","tags":["药品物流","现代物流","地方政策"]}
+    ];
 
-        document.addEventListener('DOMContentLoaded', function() {
-            allPolicies = policies;
-            renderPolicies(allPolicies);
+    function filterPolicies(category) {
+        document.querySelectorAll('.filter-btn').forEach(function(btn) {
+            btn.classList.remove('active');
         });
+        event.target.classList.add('active');
+        var filtered = category === 'all' ? allPolicies : allPolicies.filter(function(p) { return p.category === category; });
+        renderPolicies(filtered);
+    }
 
-        function filterPolicies(category) {
-            currentFilter = category;
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.textContent.includes(category) || (category === 'all' && btn.textContent.includes('全部')));
-            });
-            
-            const filtered = category === 'all' ? allPolicies : allPolicies.filter(p => p.category === category);
-            renderPolicies(filtered);
+    function renderPolicies(list) {
+        var container = document.getElementById('policyList');
+        if (!list.length) {
+            container.innerHTML = '<div style="text-align:center;padding:40px;color:#666">暂无相关政策</div>';
+            return;
         }
-
-        function renderPolicies(policies) {
-            const container = document.getElementById('policyList');
-            if (!policies.length) {
-                container.innerHTML = '<div style="text-align:center;padding:40px;color:#666">暂无相关政策</div>';
-                return;
+        var html = '';
+        for (var i = 0; i < list.length; i++) {
+            var p = list[i];
+            html += '<div class="policy-card" onclick="viewPolicy(\'' + p.id + '\')">';
+            html += '<h3>' + p.title + '</h3>';
+            html += '<div class="policy-meta"><span>发布机构：' + p.agency + '</span><span>生效时间：' + p.date + '</span><span>分类：' + p.category + '</span></div>';
+            html += '<div class="policy-summary">' + p.summary + '</div>';
+            html += '<div class="policy-tags">';
+            for (var j = 0; j < p.tags.length; j++) {
+                html += '<span class="policy-tag">' + p.tags[j] + '</span>';
             }
-
-            container.innerHTML = policies.map(policy => `
-                <div class="policy-card" onclick="viewPolicy('${policy.id}')">
-                    <h3>${policy.title}</h3>
-                    <div class="policy-meta">
-                        <span>发布机构：${policy.agency}</span>
-                        <span>生效时间：${policy.date}</span>
-                        <span>分类：${policy.category}</span>
-                    </div>
-                    <div class="policy-summary">${policy.summary}</div>
-                    <div class="policy-tags">
-                        ${policy.tags.map(tag => `<span class="policy-tag">${tag}</span>`).join('')}
-                    </div>
-                </div>
-            `).join('');
+            html += '</div></div>';
         }
+        container.innerHTML = html;
+    }
 
-        function viewPolicy(id) {
-            window.location.href = 'policy-detail.html?id=' + id;
-        }
+    function viewPolicy(id) {
+        window.location.href = 'policy-detail.html?id=' + id;
+    }
+
+    renderPolicies(allPolicies);
     </script>
 </body>
 </html>
