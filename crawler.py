@@ -18,7 +18,7 @@ import time
 # 配置
 ARTICLES_FILE = os.path.join(os.path.dirname(__file__), 'data', 'articles.json')
 ARTICLES_JS_FILE = os.path.join(os.path.dirname(__file__), 'js', 'articles.js')
-MAX_CONTENT_LENGTH = 300  # 最大内容字数
+MAX_CONTENT_LENGTH = 400  # 最大内容字数
 
 # 请求头
 HEADERS = {

@@ -18,8 +18,8 @@ ARTICLES_JS_FILE = os.path.join(BASE_DIR, 'js', 'articles.js')
 # 今日日期
 TODAY = datetime.now().strftime('%Y-%m-%d')
 
-# 内容长度（约500字）
-MAX_CONTENT_LENGTH = 500
+# 内容长度（约400字）
+MAX_CONTENT_LENGTH = 400
 
 # 100条物流新闻数据（每条约500字）
 NEWS_DATA = [
