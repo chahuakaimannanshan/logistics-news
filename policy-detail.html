@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="政策详情">
+    <title>政策详情 - 六点半物流资讯</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .policy-detail-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            transition: background 0.3s;
+        }
+        .back-btn:hover {
+            background: #5a6fd6;
+        }
+        .policy-detail {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        }
+        .policy-detail h1 {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+        .policy-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            color: #666;
+            font-size: 0.95rem;
+        }
+        .policy-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .policy-content {
+            font-size: 1.05rem;
+            line-height: 1.9;
+            color: #444;
+        }
+        .policy-content p {
+            margin-bottom: 15px;
+            text-indent: 2em;
+        }
+        .policy-tags {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .policy-tag {
+            display: inline-block;
+            padding: 6px 16px;
+            background: #f0f0ff;
+            color: #667eea;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        .related-policies {
+            margin-top: 40px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+        }
+        .related-policies h3 {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        .related-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .related-item {
+            padding: 12px;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-left: 3px solid #667eea;
+        }
+        .related-item:hover {
+            background: #f0f0ff;
+        }
+        .related-item h4 {
+            font-size: 0.95rem;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        .related-item p {
+            font-size: 0.85rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1><a href="index.html">六点半物流资讯</a></h1>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="category.html?cat=快递">快递</a></li>
+                    <li><a href="category.html?cat=仓储">仓储</a></li>
+                    <li><a href="category.html?cat=运输">运输</a></li>
+                    <li><a href="category.html?cat=供应链">供应链</a></li>
+                    <li><a href="category.html?cat=政策">政策</a></li>
+                    <li><a href="policy.html">政策法规汇编</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container policy-detail-container">
+            <a href="policy.html" class="back-btn">← 返回政策列表</a>
+            
+            <div class="policy-detail" id="policyDetail">
+                <div class="loading">加载中...</div>
+            </div>
+
+            <div class="related-policies" id="relatedPolicies">
+                <h3>相关政策</h3>
+                <div class="related-list" id="relatedList">
+                    <!-- 动态加载相关政策 -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>关于我们</h4>
+                    <p>国内物流新闻门户，提供最新的物流行业资讯和深度分析。</p>
+                </div>
+                <div class="footer-section">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="index.html">首页</a></li>
+                        <li><a href="policy.html">政策法规汇编</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>联系方式</h4>
+                    <p>邮箱：contact@logistics-news.com</p>
+                    <p>电话：400-123-4567</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 六点半物流资讯. 版权所有.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/policies.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const policyId = urlParams.get('id');
+            
+            if (policyId) {
+                loadPolicyDetail(policyId);
+            } else {
+                document.getElementById('policyDetail').innerHTML = '<div class="error">未找到政策信息</div>';
+            }
+        });
+
+        function loadPolicyDetail(id) {
+            const policy = policies.find(p => p.id === id);
+            
+            if (!policy) {
+                document.getElementById('policyDetail').innerHTML = '<div class="error">政策不存在</div>';
+                return;
+            }
+
+            // 更新页面标题
+            document.title = policy.title + ' - 六点半物流资讯';
+
+            // 渲染政策详情
+            const detailContainer = document.getElementById('policyDetail');
+            detailContainer.innerHTML = `
+                <h1>${policy.title}</h1>
+                <div class="policy-meta">
+                    <span>发布机构：${policy.agency}</span>
+                    <span>生效时间：${policy.date}</span>
+                    <span>分类：${policy.category}</span>
+                </div>
+                <div class="policy-content">
+                    <p>${policy.content}</p>
+                </div>
+                <div class="policy-tags">
+                    ${policy.tags.map(tag => `<span class="policy-tag">${tag}</span>`).join('')}
+                </div>
+            `;
+
+            // 加载相关政策
+            loadRelatedPolicies(policy);
+        }
+
+        function loadRelatedPolicies(currentPolicy) {
+            const related = policies
+                .filter(p => p.id !== currentPolicy.id && p.category === currentPolicy.category)
+                .slice(0, 3);
+
+            const relatedContainer = document.getElementById('relatedList');
+            
+            if (related.length === 0) {
+                document.getElementById('relatedPolicies').style.display = 'none';
+                return;
+            }
+
+            relatedContainer.innerHTML = related.map(policy => `
+                <div class="related-item" onclick="viewPolicy('${policy.id}')">
+                    <h4>${policy.title}</h4>
+                    <p>${policy.date} | ${policy.agency}</p>
+                </div>
+            `).join('');
+        }
+
+        function viewPolicy(id) {
+            window.location.href = 'policy-detail.html?id=' + id;
+        }
+    </script>
+</body>
+</html>
