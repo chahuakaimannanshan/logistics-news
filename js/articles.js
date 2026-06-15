@@ -1,4 +1,3 @@
-// 物流新闻文章数据
 const articles = [
   {
     "id": "article-0737190e",
@@ -13,34 +12,6 @@ const articles = [
       "物流新闻"
     ],
     "slug": "0737190e"
-  },
-  {
-    "id": "article-9f0d4171",
-    "title": "快递(社会新形式下衍生出的统一名词) - 百度百科",
-    "summary": "快递(社会新形式下衍生出的统一名词) - 百度百科",
-    "content": "<p>快递(社会新形式下衍生出的统一名词) - 百度百科</p>",
-    "author": "baidu",
-    "date": "2026-06-15",
-    "category": "快递",
-    "image": "https://picsum.photos/seed/article-9f0d4171/800/400",
-    "tags": [
-      "物流新闻"
-    ],
-    "slug": "9f0d4171"
-  },
-  {
-    "id": "article-610510f6",
-    "title": "快递(汉语词语) - 百度百科",
-    "summary": "快递(汉语词语) - 百度百科",
-    "content": "<p>快递(汉语词语) - 百度百科</p>",
-    "author": "baidu",
-    "date": "2026-06-15",
-    "category": "快递",
-    "image": "https://picsum.photos/seed/article-610510f6/800/400",
-    "tags": [
-      "物流新闻"
-    ],
-    "slug": "610510f6"
   },
   {
     "id": "article-47d0d731",
@@ -842,8 +813,3 @@ const articles = [
     "slug": "67e155e7"
   }
 ];
-
-// 导出文章数据
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = articles;
-}
