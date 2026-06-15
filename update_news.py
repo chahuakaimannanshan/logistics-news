@@ -892,10 +892,13 @@ def truncate_content(content, max_length=MAX_CONTENT_LENGTH):
         return ""
     if len(content) <= max_length:
         return content
-    for i in range(max_length, 0, -1):
-        if content[i-1] in '。！？':
+    # 只在超过max_length较多时才截断
+    if len(content) <= max_length + 50:
+        return content
+    for i in range(max_length, max_length - 50, -1):
+        if i < len(content) and content[i-1] in '。！？':
             return content[:i]
-    return content[:max_length-3] + "..."
+    return content[:max_length] + "..."
 
 def generate_article_id(title):
     """根据标题生成文章ID"""

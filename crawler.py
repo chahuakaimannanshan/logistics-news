@@ -65,27 +65,17 @@ def truncate_content(content, max_length=MAX_CONTENT_LENGTH):
         return ""
     # 清理内容
     content = clean_html(content)
-    # 如果内容已经足够短
+    # 如果内容已经足够短，直接返回
     if len(content) <= max_length:
         return content
+    # 如果只超过一点，也直接返回
+    if len(content) <= max_length + 50:
+        return content
     # 尝试在句子边界截断
-    sentences = re.split(r'[。！？；\n]', content)
-    result = ""
-    for sentence in sentences:
-        sentence = sentence.strip()
-        if not sentence:
-            continue
-        if len(result) + len(sentence) + 1 <= max_length - 3:  # 预留省略号位置
-            result += sentence + "。"
-        else:
-            break
-    if not result:
-        result = content[:max_length - 3] + "..."
-    elif len(result) < max_length:
-        result = result  # 已经是完整句子
-    else:
-        result = result[:-1] + "..."  # 移除最后一个句号，添加省略号
-    return result
+    for i in range(max_length, max_length - 50, -1):
+        if i < len(content) and content[i-1] in '。！？':
+            return content[:i]
+    return content[:max_length] + "..."
 
 def generate_article_id(title):
     """根据标题生成文章ID"""
