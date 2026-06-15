@@ -33,7 +33,16 @@ HEADERS = {
 LOGISTICS_KEYWORDS = [
     '物流', '快递', '仓储', '运输', '配送', '供应链', '货运', '包裹',
     '顺丰', '京东', '中通', '圆通', '韵达', '申通', '极兔', '菜鸟',
-    '冷链', '电商物流', '跨境物流', '智慧物流', '绿色物流'
+    '冷链', '电商物流', '跨境物流', '智慧物流', '绿色物流',
+    '货车', '车队', '干线', '末端', '分拣', '港口', '航运', '航空货运',
+    '网络货运', '多式联运', '物流枢纽', '物流园区'
+]
+
+# 无用标题关键词（过滤掉非新闻类内容）
+USELESS_TITLE_KEYWORDS = [
+    '百度百科', '汉语词语', '社会新形式', '什么意思', '定义', '概念',
+    '登录', '注册', '下载', 'APP', '客户端', '官网', '首页',
+    '招聘', '求职', '简历', '面试', '薪资'
 ]
 
 def clean_html(html_content):
@@ -150,18 +159,30 @@ def fetch_sina_logistics():
                     title = a_tag.get_text().strip()
                     news_url = a_tag.get('href', '')
                     
+                    # 过滤无用标题
+                    if any(keyword in title for keyword in USELESS_TITLE_KEYWORDS):
+                        continue
+                    
                     # 过滤非物流新闻
                     if not any(keyword in title for keyword in LOGISTICS_KEYWORDS):
+                        continue
+                    
+                    # 过滤标题太短的
+                    if len(title) < 15:
                         continue
                     
                     # 获取摘要
                     summary_tag = item.find('p', class_='txt-info')
                     summary = summary_tag.get_text().strip() if summary_tag else ''
                     
+                    # 过滤摘要太短的
+                    if not summary or len(summary) < 20:
+                        continue
+                    
                     articles.append({
                         'title': title,
-                        'summary': truncate_content(summary, 100) if summary else truncate_content(title, 100),
-                        'content': summary if summary else title,
+                        'summary': truncate_content(summary, 100),
+                        'content': summary,
                         'source': 'sina',
                         'url': news_url
                     })
@@ -199,18 +220,30 @@ def fetch_sohu_logistics():
                     title = link_tag.get_text().strip()
                     news_url = link_tag.get('href', '')
                     
+                    # 过滤无用标题
+                    if any(keyword in title for keyword in USELESS_TITLE_KEYWORDS):
+                        continue
+                    
                     # 过滤非物流新闻
                     if not any(keyword in title for keyword in LOGISTICS_KEYWORDS):
+                        continue
+                    
+                    # 过滤标题太短的
+                    if len(title) < 15:
                         continue
                     
                     # 获取摘要
                     summary_tag = item.find('p')
                     summary = summary_tag.get_text().strip() if summary_tag else ''
                     
+                    # 过滤摘要太短的
+                    if not summary or len(summary) < 20:
+                        continue
+                    
                     articles.append({
                         'title': title,
-                        'summary': truncate_content(summary, 100) if summary else truncate_content(title, 100),
-                        'content': summary if summary else title,
+                        'summary': truncate_content(summary, 100),
+                        'content': summary,
                         'source': 'sohu',
                         'url': news_url
                     })
@@ -248,18 +281,30 @@ def fetch_netease_logistics():
                     title = link_tag.get_text().strip()
                     news_url = link_tag.get('href', '')
                     
+                    # 过滤无用标题
+                    if any(keyword in title for keyword in USELESS_TITLE_KEYWORDS):
+                        continue
+                    
                     # 过滤非物流新闻
                     if not any(keyword in title for keyword in LOGISTICS_KEYWORDS):
+                        continue
+                    
+                    # 过滤标题太短的
+                    if len(title) < 15:
                         continue
                     
                     # 获取摘要
                     summary_tag = item.find('p')
                     summary = summary_tag.get_text().strip() if summary_tag else ''
                     
+                    # 过滤摘要太短的
+                    if not summary or len(summary) < 20:
+                        continue
+                    
                     articles.append({
                         'title': title,
-                        'summary': truncate_content(summary, 100) if summary else truncate_content(title, 100),
-                        'content': summary if summary else title,
+                        'summary': truncate_content(summary, 100),
+                        'content': summary,
                         'source': 'netease',
                         'url': news_url
                     })
@@ -300,18 +345,30 @@ def fetch_baidu_logistics():
                     title = a_tag.get_text().strip()
                     news_url = a_tag.get('href', '')
                     
+                    # 过滤无用标题
+                    if any(keyword in title for keyword in USELESS_TITLE_KEYWORDS):
+                        continue
+                    
                     # 过滤非物流新闻
                     if not any(keyword in title for keyword in LOGISTICS_KEYWORDS):
+                        continue
+                    
+                    # 过滤标题太短的
+                    if len(title) < 15:
                         continue
                     
                     # 获取摘要
                     summary_tag = item.find('span', class_='content-right_8Zs40')
                     summary = summary_tag.get_text().strip() if summary_tag else ''
                     
+                    # 过滤摘要太短的
+                    if not summary or len(summary) < 20:
+                        continue
+                    
                     articles.append({
                         'title': title,
-                        'summary': truncate_content(summary, 100) if summary else truncate_content(title, 100),
-                        'content': summary if summary else title,
+                        'summary': truncate_content(summary, 100),
+                        'content': summary,
                         'source': 'baidu',
                         'url': news_url
                     })
@@ -340,13 +397,13 @@ def fetch_chinawuliu_logistics():
             
             # 查找新闻链接
             news_links = soup.find_all('a', href=True)
-            for link in news_links[:30]:
+            for link in news_links[:50]:
                 try:
                     title = link.get_text().strip()
                     news_url = link.get('href', '')
                     
                     # 过滤无效链接和标题
-                    if not title or len(title) < 10:
+                    if not title or len(title) < 15:
                         continue
                     if not news_url or not news_url.startswith('http'):
                         if news_url.startswith('/'):
@@ -354,12 +411,24 @@ def fetch_chinawuliu_logistics():
                         else:
                             continue
                     
+                    # 过滤无用标题
+                    if any(keyword in title for keyword in USELESS_TITLE_KEYWORDS):
+                        continue
+                    
                     # 过滤非物流新闻
                     if not any(keyword in title for keyword in LOGISTICS_KEYWORDS):
                         continue
                     
+                    # 过滤标题太短的
+                    if len(title) < 20:
+                        continue
+                    
                     # 过滤重复标题
                     if title in [a['title'] for a in articles]:
+                        continue
+                    
+                    # 过滤导航链接（通常是短标题）
+                    if len(title) < 25 and not any(k in title for k in ['发布', '公布', '通知', '规定', '办法', '意见']):
                         continue
                     
                     articles.append({
@@ -370,12 +439,12 @@ def fetch_chinawuliu_logistics():
                         'url': news_url
                     })
                     
-                    if len(articles) >= 10:
+                    if len(articles) >= 8:
                         break
                 except Exception as e:
                     continue
             
-            if len(articles) >= 10:
+            if len(articles) >= 8:
                 break
         except Exception as e:
             print(f"中国物流与采购网抓取失败: {e}")
