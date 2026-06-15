@@ -63,7 +63,7 @@ function loadLatestNews(page) {
         return new Date(b.date) - new Date(a.date);
     });
     
-    const perPage = 5;
+    const perPage = 6;
     const start = (page - 1) * perPage;
     const end = start + perPage;
     const pageArticles = sortedArticles.slice(start, end);
@@ -91,7 +91,7 @@ function loadPagination(currentPage, totalPages) {
     const container = document.getElementById('pagination');
     if (!container) return;
     
-    const maxVisible = 6;
+    const maxVisible = 3;
     let html = '';
     
     // 上一页
