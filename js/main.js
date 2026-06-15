@@ -209,7 +209,9 @@ function loadCategoryNews(category) {
     const container = document.getElementById('categoryNews');
     if (!container) return;
     
-    const categoryArticles = articles.filter(a => a.category === category);
+    const categoryArticles = articles
+        .filter(a => a.category === category)
+        .sort((a, b) => new Date(b.date) - new Date(a.date));
     
     if (categoryArticles.length === 0) {
         container.innerHTML = '<div class="error">该分类暂无文章</div>';
@@ -230,7 +232,9 @@ function loadTagNews(tag) {
     const container = document.getElementById('categoryNews');
     if (!container) return;
     
-    const tagArticles = articles.filter(a => a.tags.includes(tag));
+    const tagArticles = articles
+        .filter(a => a.tags.includes(tag))
+        .sort((a, b) => new Date(b.date) - new Date(a.date));
     
     if (tagArticles.length === 0) {
         container.innerHTML = '<div class="error">该标签暂无文章</div>';
@@ -251,12 +255,14 @@ function loadAllNews() {
     const container = document.getElementById('categoryNews');
     if (!container) return;
     
+    const sortedArticles = [...articles].sort((a, b) => new Date(b.date) - new Date(a.date));
+    
     const meta = document.getElementById('categoryMeta');
     if (meta) {
         meta.textContent = `共 ${articles.length} 篇文章`;
     }
     
-    renderArticleList(container, articles);
+    renderArticleList(container, sortedArticles);
 }
 
 // 渲染文章列表
